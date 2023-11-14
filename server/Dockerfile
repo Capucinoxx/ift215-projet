@@ -2,13 +2,13 @@ FROM python:3.11-alpine
 
 RUN apk update && \
     apk upgrade && \
-    apk add --no-cache bash
+    apk add --no-cache bash gcc libpq-dev
 
 COPY src/ src/
 COPY requirements.txt .
 COPY .flaskenv .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 RUN rm -rf requirements.txt
 
 RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
