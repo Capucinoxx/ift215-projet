@@ -5,18 +5,19 @@ services:
     ports:
       - "8080:5000"
     environment:
-      - POSTGERS_PASSWORD: postgres
-      - POSTGRES_USER: postgres
-      - POSTGRES_DB: postgres
+      POSTGERS_PASSWORD: 'postgres'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DB: 'postgres'
     depends_on:
       - db
 
   db:
     image: postgres
+    restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'postgres'
     volumes:
       - ./data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
