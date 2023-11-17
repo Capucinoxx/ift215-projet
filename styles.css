@@ -317,3 +317,71 @@ td:hover {
 .deroulant:hover .sous-menu {
     display: block;
 }
+
+/* PAGE ASTUCES */
+
+.astuces-wrapper {
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 20px;
+    top: 200px;
+}
+
+.astuces-wrapper ol {
+    list-style: none;
+}
+
+.astuces-wrapper li {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgb(176, 123, 131);
+    padding: 20px;
+    border-radius: 1rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    counter-increment: list-item;
+    margin: 20px;
+    color: var(--white);
+}
+
+.astuces-wrapper li::before {
+    content: counter(list-item);
+    font-size: 30px;
+    font-weight: 700;
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    flex: 0 0 auto;
+    border-radius: 50%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.astuces-wrapper li {
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.astuces-wrapper h3 {
+    font-size: 25px;
+    color: #fff;
+}
+
+.astuces-wrapper p {
+    gap: 1.2rem;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
