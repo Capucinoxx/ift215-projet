@@ -58,6 +58,7 @@ let me = null;
             return;
 
         me = response.data;
+        location.reload();
     });
 
     const el_switch_container = el_auth_form.querySelector('.form-switch-container');

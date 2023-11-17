@@ -55,6 +55,8 @@ def register():
     db.session.add(user)
     db.session.commit()
 
+    login_user(user, remember=True)
+
     return jsonify({'success': 'Registered', 'data': user.to_dict()}), 201
 
 
