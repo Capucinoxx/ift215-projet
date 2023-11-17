@@ -16,11 +16,14 @@ def emotions():
     start_date = data['start_date']
     end_date = data['end_date']
     
-    emotions = (
-        Emotion.query.filter_by(user_id=current_user.id)
-        .filter(Emotion.date.between(start_date, end_date))
-        .all()
-    )
+    try:
+        emotions = (
+            Emotion.query.filter_by(user_id=current_user.id)
+            .filter(Emotion.date.between(start_date, end_date))
+            .all()
+        )
+    except:
+        return jsonify({'error': 'Bad insertion'}), 400
 
     return jsonify({'success': 'Emotions retrieved', 'data': [e.to_dict() for e in emotions]}), 200
 
@@ -33,9 +36,12 @@ def add_emotion():
     date = data['date']
     emotion = data['emotion']
 
-    emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
-    db.session.add(emotion)
-    db.session.commit()
+    try:
+        emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
+        db.session.add(emotion)
+        db.session.commit()
+    except:
+        return jsonify({'error': 'Bad insertion'}), 400
 
     return jsonify({'success': 'Emotion added', 'data': emotion.to_dict()}), 201
 
@@ -47,7 +53,11 @@ def remove_emotion():
     data = request.json
     emotion_id = data['id']
 
-    emotion = Emotion.query.filter_by(id=emotion_id, user_id=current_user.id).first()
+    try:
+        emotion = Emotion.query.filter_by(id=emotion_id, user_id=current_user.id).first()
+    except:
+        return jsonify({'error': 'Bad insertion'}), 400
+    
     if not emotion:
         return jsonify({'error': 'Emotion not found'}), 404
     
