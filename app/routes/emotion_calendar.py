@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.models import Emotion
 from app.utils import check_required_json_data
 
@@ -8,6 +8,7 @@ emotion_calendar = Blueprint('emotion_calendar', __name__)
 
 
 @emotion_calendar.route('/emotions')
+@login_required
 @check_required_json_data(['start_date', 'end_date'])
 def emotions():
     data = request.json
