@@ -56,3 +56,9 @@ def register():
     db.session.commit()
 
     return jsonify({'success': 'Registered', 'data': user.to_dict()}), 201
+
+
+@auth.route('/me', methods=['GET'])
+@login_required
+def me():
+    return jsonify({'data': current_user.to_dict()}), 200
