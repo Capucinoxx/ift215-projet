@@ -34,6 +34,7 @@ body {
     margin: 0;
     width: 150px;
     text-align: center;
+    transition: color 0.5s, background-color 0.5s;
 }
 
 .menu-item a {
@@ -267,4 +268,49 @@ td:hover {
 
 .meditation button {
     font-size: 20px;
+}
+
+/* SOUS-MENU DÉROULANT */ 
+.deroulant {
+    float: left;
+    overflow: hidden;
+}
+.deroulant .btn-deroulant {
+    font-size: 16px;
+    color: var(--white);
+    padding: 10px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    transition: color 0.5s, background-color 0.5s;
+    width: 150px;
+}
+
+.deroulant:hover .btn-deroulant{
+    background-color: var(--light-blue);
+    border-radius: 0%;
+}
+
+.sous-menu a {
+    float: none;
+    color: var(--background);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: color 0.5s, background-color 0.5s;
+    color: var(--white);
+}
+.sous-menu a:hover {
+    background-color: var(--light-blue);
+}
+
+.sous-menu {
+    display: none;
+    background-color: var(--background);
+    z-index: 1;
+    position: absolute;
+}
+.deroulant:hover .sous-menu {
+    display: block;
 }
