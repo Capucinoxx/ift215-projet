@@ -10,11 +10,12 @@ emotion_calendar = Blueprint('emotion_calendar', __name__)
 
 @emotion_calendar.route('/emotions', methods=['GET'])
 @login_required
-@check_required_json_data(['start_date', 'end_date'])
 def emotions():
-    data = request.json
-    start_date = data['start_date']
-    end_date = data['end_date']
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
+
+    if not start_date or not end_date:
+        return jsonify({'error': 'Start date or End date missing'}), 400
     
     try:
         emotions = (

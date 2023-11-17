@@ -24,6 +24,6 @@ Pour faire un healthcheck aller sur la page `http://localhost:8080/ping`
 | `/logout`                         | GET     | Permet de se déconnecter                                                     | `NAN`                                    |
 | `/me`                             | GET     | Affiche les informations de l'utilisateur connecté                           | `NAN`                                    |
 | **CALENDRIER DES ÉMOTIONS**       |         |                                                                              |                                          |
-| `/emotions/:start_date/:end_date` | GET     | Liste les émotions pour l'utilisateur connecté sur la période de temps ciblé | `NAN`                                    |
+| `/emotions?start_date&end_date`   | GET     | Liste les émotions pour l'utilisateur connecté sur la période de temps ciblé | `NAN`                                    |
 | `/emotion`                        | POST    | Ajoute une émotion pour l'utilisateur connecté                               | ```{ "emotion": "", "date": "" }```      |
 | `/emotion`                        | DELETE  | Supprime une émotion pour l'utilisateur connecté                             | ```{ "id": 0 }```                        |
