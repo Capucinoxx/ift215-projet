@@ -32,7 +32,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return jsonify({'success': 'Logged out'}), 200
+    return redirect(url_for('auth.login'))
 
 
 @auth.route('/register', methods=['GET', 'POST'])
