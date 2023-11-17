@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
+from app.database import db
 from app.models import Emotion
 from app.utils import check_required_json_data
 
@@ -24,6 +25,23 @@ def emotions():
     return jsonify({'success': 'Emotions retrieved', 'data': [e.to_dict() for e in emotions]}), 200
 
 
-@emotion_calendar.route('/emotion', methods=['POST', 'DELETE'])
-def emotion():
+@emotion_calendar.route('/emotion', methods=['POST'])
+@login_required
+@check_required_json_data(['date', 'emotion'])
+def add_emotion():
+    data = request.json
+    date = data['date']
+    emotion = data['emotion']
+
+    emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
+    db.session.add(emotion)
+    db.session.commit()
+
+    return jsonify({'success': 'Emotion added', 'data': emotion.to_dict()}), 201
+
+
+@emotion_calendar.route('/emotion', methods=['DELETE'])
+@login_required
+@check_required_json_data(['id'])
+def remove_emotion():
     pass
