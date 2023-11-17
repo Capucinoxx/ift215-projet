@@ -5,9 +5,10 @@ services:
     ports:
       - "8080:5000"
     environment:
-      POSTGERS_PASSWORD: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
       POSTGRES_USER: 'postgres'
       POSTGRES_DB: 'postgres'
+      SECRET_KEY: 'secret'
     depends_on:
       - db
 
