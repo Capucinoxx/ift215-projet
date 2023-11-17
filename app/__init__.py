@@ -1,10 +1,27 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from app.utils import login_manager
+from app.routes import setup_routes
+from app.database import db
 
-app = Flask(__name__)
-app.config.from_pyfile('config.py')
 
-db = SQLAlchemy(app)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_pyfile('config.py')
+    print(app.config)
+
+    db.init_app(app)
+
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+
+    @app.route('/ping')
+    def ping():
+        return 'pong'
+
+    setup_routes(app)
+
+    return app
+
 
 from app import routes
 from app import models

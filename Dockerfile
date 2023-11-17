@@ -4,8 +4,9 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache bash gcc libpq-dev
 
+
 COPY app/ app/
-COPY run.py .
+COPY .flaskenv .
 
 COPY requirements.txt .
 
@@ -18,11 +19,11 @@ RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for
 
 RUN addgroup -S group && \
     adduser -S -G group jane_doe && \
-    chmod 600 -R /app && \
+    chmod 600 -R app && \
     chmod 750 wait-for-it.sh && \
     chown jane_doe:group wait-for-it.sh && \
-    chown jane_doe:group -R /app && \
-    chmod 700 -R /app
+    chown jane_doe:group -R app && \
+    chmod 700 -R app
 
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
@@ -30,4 +31,4 @@ RUN rm -rf /var/cache/apk/* && \
 
 USER jane_doe
 
-CMD ["./wait-for-it.sh", "db:5432", "--", "python", "run.py"]
+CMD ["./wait-for-it.sh", "db:5432", "--", "flask", "run"]
