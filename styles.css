@@ -1,13 +1,27 @@
+/* variables */
+:root {
+--card: #895d4a;
+--background: #b8a489;
+--white: #fff;
+--light-blue: #94b8b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #b8a489;
+    background-color: var(--background);
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
 }
+
 .menu-bar {
     margin-top: 40px;
     display: flex;
@@ -24,14 +38,14 @@ body {
 
 .menu-item a {
     text-decoration: none;
-    color: #fff;
+    color: var(--white);
     display: block;
     padding: 10px;
     transition: background-color 0.3s;
 }
 
 .menu-item:hover {
-    background-color: #94b8b8;
+    background-color: var(--light-blue);
 }
 .calendar {
     width: 100%;
@@ -48,12 +62,12 @@ body {
     justify-content: space-between;
     padding: 10px;
     background-color: #d3c1a2;
-    color: #fff;
+    color: var(--white);
 }
 
 button {
     background-color: #d3c1a2;
-    color: #fff;
+    color: var(--white);
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
@@ -61,7 +75,7 @@ button {
 }
 
 button:hover {
-    background-color: #b8a489;
+    background-color: var(--background);
 }
 
 table {
@@ -78,7 +92,7 @@ th, td {
 
 th {
     background-color: #d3c1a2;
-    color: #fff;
+    color: var(--white);
 }
 
 td {
@@ -124,7 +138,7 @@ td:hover {
 
 .modal button {
     background-color: #d3c1a2;
-    color: #fff;
+    color: var(--white);
     border: none;
     padding: 10px;
     margin: 5px;
@@ -132,7 +146,7 @@ td:hover {
 }
 
 .modal button:hover {
-    background-color: #b8a489;
+    background-color: var(--background);
 }
 
 .emotion-image {
@@ -163,4 +177,94 @@ td:hover {
     max-width: 50px;
     max-height: 50px;
     margin: 5px;
+}
+
+/* PAGE MÉDITATION */
+
+.banner-image img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.card-container {
+    position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.card {
+	position: relative;
+	width: 300px;
+	height: 400px;
+	margin: 20px;
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    background-color: var(--card);
+}
+
+.content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	transition: 0.5s;
+}
+
+.card:hover .content {
+	transform: translateY(-20px);
+}
+
+.image-container {
+	width: 150px;
+	height: 150px;
+}
+
+.image-container img {
+	width: 100%;
+	height: 100%;
+}
+
+.description-container h3 {
+	color: var(--white);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 500;
+	font-size: 20px;
+	text-align: center;
+	margin: 20px 0 10px;
+	line-height: 1.1em;
+}
+
+.description-container h3 span {
+	font-size: 14px;
+	text-transform: initial;
+}
+
+.animated-items {
+	position: absolute;
+	bottom: 50px;
+	display: flex;
+}
+
+.animated-items li {
+	list-style: none;
+	transform: translateY(40px);
+	transition: 0.6s;
+	opacity: 0;
+}
+
+.card:hover .animated-items li {
+	transform: translateY(15px);
+	opacity: 1;
+}
+
+.meditation button {
+    font-size: 20px;
 }
