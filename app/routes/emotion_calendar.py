@@ -44,4 +44,14 @@ def add_emotion():
 @login_required
 @check_required_json_data(['id'])
 def remove_emotion():
-    pass
+    data = request.json
+    emotion_id = data['id']
+
+    emotion = Emotion.query.filter_by(id=emotion_id, user_id=current_user.id).first()
+    if not emotion:
+        return jsonify({'error': 'Emotion not found'}), 404
+    
+    db.session.delete(emotion)
+    db.session.commit()
+
+    return jsonify({'success': 'Emotion removed', 'data': emotion.to_dict()}), 200
