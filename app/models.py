@@ -1,30 +1,17 @@
 from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
-    """
-    User model
-
-    Attributes:
-      id (int): The user's ID
-      username (str): The user's username
-      password (str): The user's password
-    """
-
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
 
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    def set_password(self, password: str) -> None:
+        self.password = generate_password_hash(password)
 
-    def __repr__(self):
+    def check_password(self, password: str) -> bool:
+        return check_password_hash(self.password, password)
+
+    def __repr__(self) -> str:
         return f"User('{self.username}')"
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'password': self.password
-        }
