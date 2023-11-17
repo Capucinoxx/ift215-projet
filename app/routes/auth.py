@@ -1,16 +1,13 @@
-from flask import render_template, redirect, url_for, flash, jsonify, request
+from flask import Blueprint, render_template, redirect, url_for, jsonify, request
 from flask_login import login_user, logout_user, current_user, login_required
-from app import app, db
+from app.database import db
 from app.models import User
 from app.utils import check_required_json_data
 
-
-@app.route('/ping')
-def ping():
-    return 'pong'
+auth = Blueprint('auth', __name__)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET', 'POST'])
 @check_required_json_data(['username', 'password'])
 def login():
     if current_user.is_authenticated:
@@ -29,14 +26,14 @@ def login():
     return jsonify({'success': 'Logged in', 'data': user.to_dict()}), 200
 
 
-@app.route('/logout')
+@auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     return jsonify({'success': 'Logged out'}), 200
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@auth.route('/register', methods=['GET', 'POST'])
 @check_required_json_data(['username', 'password'])
 def register():
     if current_user.is_authenticated:
