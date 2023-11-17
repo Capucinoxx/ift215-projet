@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, render_template, request, jsonify
 from flask_login import current_user, login_required
 from app.database import db
 from app.models import Emotion
@@ -14,19 +14,16 @@ def emotions():
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
 
-    if not start_date or not end_date:
-        return jsonify({'error': 'Start date or End date missing'}), 400
-    
-    try:
+    emotions = []
+    if start_date and end_date:
         emotions = (
             Emotion.query.filter_by(user_id=current_user.id)
             .filter(Emotion.date.between(start_date, end_date))
             .all()
         )
-    except:
-        return jsonify({'error': 'Bad insertion'}), 400
 
-    return jsonify({'success': 'Emotions retrieved', 'data': [e.to_dict() for e in emotions]}), 200
+
+    return render_template('emotion_calendar.html', emotions=emotions)
 
 
 @emotion_calendar.route('/emotion', methods=['POST'])
