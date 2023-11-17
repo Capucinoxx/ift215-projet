@@ -8,7 +8,7 @@ from app.utils import check_required_json_data
 emotion_calendar = Blueprint('emotion_calendar', __name__)
 
 
-@emotion_calendar.route('/emotions')
+@emotion_calendar.route('/emotions', methods=['GET'])
 @login_required
 @check_required_json_data(['start_date', 'end_date'])
 def emotions():
