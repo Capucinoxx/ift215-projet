@@ -6,7 +6,6 @@ const SERVER_PATH = 'http://localhost:8080';
  * @async
  * @param url {string} The url to fetch from
  * @param params {RequestInit} [params={}] Optional request parameters.
- * @param toast {boolean} [toast=true] Optional emit toast notification on error
  * @returns {Promise<Object | null>} A Promise that resolves to the fetched JSON
  * @throws {Error} If the response is not ok or the JSON contains an error
  */
