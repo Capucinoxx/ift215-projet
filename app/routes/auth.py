@@ -10,8 +10,10 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET', 'POST'])
 @check_required_json_data(['username', 'password'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('ping'))
+    if request.method == 'GET':
+        if current_user.is_authenticated:
+            return redirect(url_for('ping'))
+        return render_template('auth.html')
 
     data = request.json
     username = data['username']
@@ -36,8 +38,10 @@ def logout():
 @auth.route('/register', methods=['GET', 'POST'])
 @check_required_json_data(['username', 'password'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('ping'))
+    if request.method == 'GET':
+        if current_user.is_authenticated:
+            return redirect(url_for('ping'))
+        return render_template('auth.html')
 
     data = request.json
     username = data['username']
