@@ -1,5 +1,5 @@
 # Flask source files directory
-FLASK_APP=src
+FLASK_APP=app
 
 # Flask environment mode
 FLASK_ENV=development
