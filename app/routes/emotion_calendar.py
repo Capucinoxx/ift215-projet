@@ -23,7 +23,7 @@ def emotions():
         )
 
 
-    return render_template('emotion_calendar.html', emotions=emotions)
+    return render_template('journalisation.html', emotions=emotions)
 
 
 @emotion_calendar.route('/emotion', methods=['POST'])
