@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, url_for, send_from_directory
 from flask_login import current_user, login_required
 from app.database import db
 from app.models import Emotion
 from app.utils import check_required_json_data
+from werkzeug.utils import secure_filename
+
 
 
 emotion_calendar = Blueprint('emotion_calendar', __name__)
@@ -63,3 +65,10 @@ def remove_emotion():
     db.session.commit()
 
     return jsonify({'success': 'Emotion removed', 'data': emotion.to_dict()}), 200
+
+@emotion_calendar.route('/emotions/<emotion_name>', methods=['GET'])
+def show_emotion(emotion_name):
+    emotion = secure_filename(emotion_name)
+    directory = 'static/emotions'
+    return send_from_directory(directory, emotion), 200
+    

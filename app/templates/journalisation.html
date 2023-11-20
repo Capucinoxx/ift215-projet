@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="calendar.js" defer></script>
     <title>Sante Mentale</title>
 </head>
 <body>
@@ -38,6 +37,7 @@
     </table>
 </div>
 
-<script src="calendar.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script src="{{ url_for('static', filename='calendar.js') }}"></script>
 </body>
 </html>

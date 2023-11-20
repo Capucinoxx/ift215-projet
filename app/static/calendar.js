@@ -1,19 +1,20 @@
-let emotions = [
-    '/emotions/Angry.PNG',
-    '/emotions/Annoyed.PNG',
-    '/emotions/Down.PNG',
-    '/emotions/Frustrated.PNG',
-    '/emotions/Happy.PNG',
-    '/emotions/Loved.PNG',
-    '/emotions/Proud.PNG',
-    '/emotions/Sad.PNG',
-    '/emotions/Scared.PNG',
-    '/emotions/Shy.PNG',
-    '/emotions/Sleepy.PNG',
-    '/emotions/Stressed.PNG',
-    '/emotions/Suprised.PNG',
-    '/emotions/Worried.PNG'
+const emotions = [
+    '/emotions/angry.png',
+    '/emotions/annoyed.png',
+    '/emotions/down.png',
+    '/emotions/frustrated.png',
+    '/emotions/happy.png',
+    '/emotions/loved.png',
+    '/emotions/proud.png',
+    '/emotions/sad.png',
+    '/emotions/scared.png',
+    '/emotions/shy.png',
+    '/emotions/sleepy.png',
+    '/emotions/stressed.png',
+    '/emotions/surprised.png',
+    '/emotions/worried.png'
 ];
+
 
 function setInitialWeek() {
     const currentDate = new Date();
