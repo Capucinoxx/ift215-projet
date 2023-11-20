@@ -71,3 +71,26 @@ let me = null;
         el_switch.textContent = action === '/login' ? 'Inscription' : 'Connexion';
     });
 })();
+
+// ==================================================
+// emotion form management
+// ==================================================
+(() => {
+    const el_emotion_form = document.getElementById('container-emotion_form');
+    if (!el_emotion_form)
+        return;
+
+    el_emotion_form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = {};
+        (new FormData(el_emotion_form)).forEach((value, key) => data[key] = value);
+
+        const response = await json_fetch('/emotion', { method: 'POST', body: JSON.stringify(data) });
+        if (!response)
+            return;
+
+        location.replace('/emotions');
+        location.reload();
+    });
+})();

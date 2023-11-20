@@ -31,3 +31,21 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
         }
+
+
+class Emotion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.DateTime, nullable=False)
+    emotion = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"Emotion('{self.user_id}', '{self.date}', '{self.emotion}')"
+    
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'date': self.date,
+            'emotion': self.emotion,
+        }

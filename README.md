@@ -12,10 +12,18 @@ Pour faire un healthcheck aller sur la page `http://localhost:8080/ping`
 
 ## Routes
 
-| Route | Méthode | Description |
-| --- | --- | --- |
-| `/ping` | GET | Vérifie si le serveur est en ligne |
-| `/login` | POST<br />GET | Permet de se connecter<br />Affiche la page de connexion |
-| `/register` | POST<br />GET | Permet de s'inscrire<br />Affiche la page d'inscription |
-| `/logout` | GET | Permet de se déconnecter |
-| `/me` | GET | Affiche les informations de l'utilisateur connecté |
+| Route                             | Méthode | Description                                                                  | exemple payload                          |
+|-----------------------------------|---------|------------------------------------------------------------------------------|------------------------------------------|
+| **HEALTHCHECK**                   |         |                                                                              |                                          |
+| `/ping`                           | GET     | Vérifie si le serveur est en ligne                                           | `NAN`                                    |
+| **AUTHENTIFICATION**              |         |                                                                              |                                          |
+| `/login`                          | GET     | Affiche la page de connexion                                                 | `NAN`                                    |
+| `/register`                       | GET     | Affiche la page d'inscription                                                | `NAN`                                    |
+| `/login`                          | POST    | Permet de se connecter                                                       | ```{ "username": "", "password": "" }``` |
+| `/register`                       | POST    | Permet de s'inscrire                                                         | ```{ "username": "", "password": "" }``` |
+| `/logout`                         | GET     | Permet de se déconnecter                                                     | `NAN`                                    |
+| `/me`                             | GET     | Affiche les informations de l'utilisateur connecté                           | `NAN`                                    |
+| **CALENDRIER DES ÉMOTIONS**       |         |                                                                              |                                          |
+| `/emotions?start_date&end_date`   | GET     | Liste les émotions pour l'utilisateur connecté sur la période de temps ciblé | `NAN`                                    |
+| `/emotion`                        | POST    | Ajoute une émotion pour l'utilisateur connecté                               | ```{ "emotion": "", "date": "" }```      |
+| `/emotion`                        | DELETE  | Supprime une émotion pour l'utilisateur connecté                             | ```{ "id": 0 }```                        |

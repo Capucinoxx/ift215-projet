@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+</head>
+<body>
+    <ul>
+        {% for emotion in emotions %}
+        <li class="emotion">
+            <p>
+                {{ emotion.id }}
+                {{ emotion.emotion }}
+                {{ emotion.date }}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form id="container-emotion_form">
+        <label for="emotion">Emotion:</label>
+        <input type="text" id="emotion" name="emotion" required><br/>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br/>
+        <input type="submit" value="envoyer">
+    </form>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
