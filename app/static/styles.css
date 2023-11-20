@@ -147,7 +147,7 @@ td:hover {
     height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -163,4 +163,10 @@ td:hover {
     max-width: 50px;
     max-height: 50px;
     margin: 5px;
+}
+
+#calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100vw;
 }

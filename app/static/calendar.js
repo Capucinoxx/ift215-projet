@@ -38,10 +38,10 @@ function showEmotionSelector(currentDate) {
 
         emotionImage.addEventListener('click', () => {
             const selectedEmotion = emotionUrl;
+
             setStoredMood(currentDate, selectedEmotion);
             updateMoodImage(currentDate, selectedEmotion, selectedImagesContainer);
             modal.remove();
-            updateCalendar();
         });
 
         selectedImagesContainer.appendChild(emotionImage);
@@ -94,7 +94,7 @@ function updateCalendar() {
 
     // Créer les cellules pour chaque jour de la semaine
     for (let i = 0; i < 7; i++) {
-        const dayCell = document.createElement('td');
+        const dayCell = document.createElement('tr');
         const currentDate = new Date(currentWeekStart);
         currentDate.setDate(currentWeekStart.getDate() + i);
 
