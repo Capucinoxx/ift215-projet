@@ -4,7 +4,7 @@ from app.database import db
 from app.models import Emotion
 from app.utils import check_required_json_data
 from werkzeug.utils import secure_filename
-
+from datetime import datetime, timedelta
 
 
 emotion_calendar = Blueprint('emotion_calendar', __name__)
@@ -16,6 +16,11 @@ def emotions():
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
 
+    if not start_date or not end_date:
+        now = datetime.now()
+        start_date = now - timedelta(days=now.weekday())
+        end_date = start_date + timedelta(days=6)
+
     emotions = []
     if start_date and end_date:
         emotions = (
@@ -24,6 +29,8 @@ def emotions():
             .all()
         )
 
+    emotions = {emotion.date.strftime('%A'): emotion for emotion in emotions}
+    emotions = [emotions.get(day.strftime('%A'), None) for day in [start_date + timedelta(days=i) for i in range(7)]]
 
     return render_template('journalisation.html', emotions=emotions)
 

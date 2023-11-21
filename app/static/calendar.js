@@ -15,7 +15,6 @@ const emotions = [
     '/emotions/worried.png'
 ];
 
-
 function setInitialWeek() {
     const currentDate = new Date();
     const currentDayOfWeek = currentDate.getDay();
