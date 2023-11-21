@@ -12,7 +12,7 @@ auth = Blueprint('auth', __name__)
 def login():
     if request.method == 'GET':
         if current_user.is_authenticated:
-            return redirect(url_for('/'))
+            return redirect('/')
         return render_template('auth.html')
 
     data = request.json
@@ -40,7 +40,7 @@ def logout():
 def register():
     if request.method == 'GET':
         if current_user.is_authenticated:
-            return redirect(url_for('/'))
+            return redirect('/')
         return render_template('auth.html')
 
     data = request.json
