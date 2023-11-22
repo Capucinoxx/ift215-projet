@@ -35,13 +35,13 @@ def emotions():
     emotions = {emotion.date.strftime('%A'): emotion for emotion in emotions}
     emotions = [emotions.get(day.strftime('%A'), None) for day in [start_date + timedelta(days=i) for i in range(7)]]
 
-    next_week = f"/emotions?start_date={(end_date + timedelta(days=1)).strftime('%Y-%m-%d')}&end_date={(end_date + timedelta(days=7)).strftime('%Y-%m-%d')}"
-    previous_week = f"/emotions?start_date={(start_date - timedelta(days=7)).strftime('%Y-%m-%d')}&end_date={(start_date - timedelta(days=1)).strftime('%Y-%m-%d')}"
+    next_week = f"/emotions?start_date={end_date + timedelta(days=1):%Y-%m-%d}&end_date={end_date + timedelta(days=7):%Y-%m-%d}"
+    prev_week = f"/emotions?start_date={start_date - timedelta(days=7):%Y-%m-%d}&end_date={start_date - timedelta(days=1):%Y-%m-%d}"
 
     return render_template('journalisation.html', emotions=emotions, 
                            start_date=start_date, end_date=end_date, 
                            week_number=start_date.isocalendar()[1],
-                           next_week=next_week, previous_week=previous_week)
+                           next_week=next_week, previous_week=prev_week)
 
 @emotion_calendar.route('/emotion', methods=['POST'])
 @login_required
