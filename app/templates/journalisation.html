@@ -15,9 +15,9 @@
 
 <div class="calendar">
     <div class="header">
-        <button onclick="previous()">Semaine précédente</button>
-        <h2 id="week">Semaine #</h2>
-        <button onclick="next()">Semaine suivante</button>
+        <a href="{{ previous_week }}">Semaine précédente</a>
+        <h2 id="week">Semaine #{{ week_number }}</h2>
+        <a href="{{ next_week }}">Semaine suivante</a>
     </div>
 
     <table id="calendar-table">

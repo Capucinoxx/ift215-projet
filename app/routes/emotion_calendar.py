@@ -20,6 +20,9 @@ def emotions():
         now = datetime.now()
         start_date = now - timedelta(days=now.weekday())
         end_date = start_date + timedelta(days=6)
+    else:
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
 
     emotions = []
     if start_date and end_date:
@@ -32,8 +35,13 @@ def emotions():
     emotions = {emotion.date.strftime('%A'): emotion for emotion in emotions}
     emotions = [emotions.get(day.strftime('%A'), None) for day in [start_date + timedelta(days=i) for i in range(7)]]
 
-    return render_template('journalisation.html', emotions=emotions)
+    next_week = f"/emotions?start_date={(end_date + timedelta(days=1)).strftime('%Y-%m-%d')}&end_date={(end_date + timedelta(days=7)).strftime('%Y-%m-%d')}"
+    previous_week = f"/emotions?start_date={(start_date - timedelta(days=7)).strftime('%Y-%m-%d')}&end_date={(start_date - timedelta(days=1)).strftime('%Y-%m-%d')}"
 
+    return render_template('journalisation.html', emotions=emotions, 
+                           start_date=start_date, end_date=end_date, 
+                           week_number=start_date.isocalendar()[1],
+                           next_week=next_week, previous_week=previous_week)
 
 @emotion_calendar.route('/emotion', methods=['POST'])
 @login_required
