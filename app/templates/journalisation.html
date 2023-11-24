@@ -35,7 +35,7 @@
         <tbody id="calendar-body">
             {% for emotion in emotions %}
             <tr>
-                <td class='mood-section'>
+                <td class='mood-section' data-date='{{ emotion.date }}'>
                     <button>Choisir une humeur</button>
                     <div class='selected-images-container'>
                         <img class='selected-emotion-image' src='{{ emotion.emotion or "" }}' />
@@ -48,7 +48,7 @@
     </table>
 </div>
 
-<!-- <script src="{{ url_for('static', filename='app.js') }}"></script> -->
-<!-- <script src="{{ url_for('static', filename='calendar.js') }}"></script> -->
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script src="{{ url_for('static', filename='calendar.js') }}"></script>
 </body>
 </html>

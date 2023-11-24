@@ -32,8 +32,15 @@ def emotions():
             .all()
         )
 
-    emotions = {emotion.date.strftime('%A'): emotion for emotion in emotions}
-    emotions = [emotions.get(day.strftime('%A'), None) for day in [start_date + timedelta(days=i) for i in range(7)]]
+    emotion_dict = {}
+
+    for emotion in emotions:
+        emotion_date = emotion['date']
+        emotion_content = emotion['content']
+        emotion_dict[emotion_date] = emotion_content
+
+    emotions = [{'date': (start_date + timedelta(days=i)).strftime('%Y-%m-%d'), 'emotion': emotion_dict.get((start_date + timedelta(days=i)).strftime('%Y-%m-%d'), '')} for i in range(7)]
+
 
     next_week = f"/emotions?start_date={end_date + timedelta(days=1):%Y-%m-%d}&end_date={end_date + timedelta(days=7):%Y-%m-%d}"
     prev_week = f"/emotions?start_date={start_date - timedelta(days=7):%Y-%m-%d}&end_date={start_date - timedelta(days=1):%Y-%m-%d}"
