@@ -26,6 +26,7 @@ const emotions = [
     const show_modal = (selected_date) => {
         const modal = document.createElement('div');
         modal.className = 'modal';
+        console.log(selected_date);
 
         const selectedImagesContainer = document.createElement('div');
         selectedImagesContainer.className = 'selected-images-container';
@@ -52,8 +53,8 @@ const emotions = [
         document.body.appendChild(modal);
     };
 
-    const update_mood_img = (idx, emotionUrl) => {
-        const day_cell = document.querySelector(`td[data-idx="${idx}"]`);
+    const update_mood_img = (date, emotionUrl) => {
+        const day_cell = document.querySelector(`td[data-date="${date}"]`);
         if (!day_cell)
             return;
 
@@ -62,7 +63,7 @@ const emotions = [
 
     document.querySelectorAll('td.mood-section > button').forEach((btn) => {
         btn.addEventListener('click', () => {
-            const selected_date = btn.closest('td').dataset.idx;
+            const selected_date = btn.closest('td').dataset.date;
             show_modal(selected_date);
         });
     });
