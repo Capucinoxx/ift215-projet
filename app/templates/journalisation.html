@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Sante Mentale</title>
+</head>
+<body>
+<div class="menu-bar">
+    <div class="menu-item"><a href="/">Accueil</a></div>
+    <div class="menu-item"><a href="/meditation">Méditation</a></div>
+    <div class="menu-item"><a href="#">Journalisation</a></div>
+</div>
+
+<div class="calendar">
+    <div class="header">
+        <button onclick="previous()">Semaine précédente</button>
+        <h2 id="week">Semaine #</h2>
+        <button onclick="next()">Semaine suivante</button>
+    </div>
+
+    <table id="calendar-table">
+        <thead>
+        <tr>
+            <th>Dim</th>
+            <th>Lun</th>
+            <th>Mar</th>
+            <th>Mer</th>
+            <th>Jeu</th>
+            <th>Ven</th>
+            <th>Sam</th>
+        </tr>
+        </thead>
+        <tbody id="calendar-body">
+        </tbody>
+    </table>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script src="{{ url_for('static', filename='calendar.js') }}"></script>
+</body>
+</html>
