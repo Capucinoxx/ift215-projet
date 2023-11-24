@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}"
+  />
     <title>Sante Mentale</title>
-  </head>
-  <body>
-    <div class="menu-bar">
-      <div class="menu-item"><a href="#">Accueil</a></div>
-      <div class="menu-item"><a href="/meditation">Méditation</a></div>
-      <div class="menu-item"><a href="/emotions">Journalisation</a></div>
-    </div>
-    <div class="ressources">
-      <h1>Quelques ressources disponibles</h1>
-      <div id="pdv-flex"></div>
-    </div>
-    <script src="{{ url_for('static', filename='ressources.js') }}"></script>
-  </body>
+</head>
+<body>
+  <div class="menu-bar">
+    <div class="menu-item"><a href="#">Accueil</a></div>
+    <div class="menu-item"><a href="/meditation">Méditation</a></div>
+    <div class="menu-item"><a href="/emotions">Journalisation</a></div>
+  </div>
+  <div class="ressources">
+    <h1>Quelques ressources disponibles</h1>
+    <div id="pdv-flex"></div>
+  </div>
+  <script src="{{ url_for('static', filename='ressources.js') }}"></script>
+</body>
 </html>
