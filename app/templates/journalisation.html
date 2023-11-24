@@ -36,7 +36,7 @@
             {% for date, url in emotions %}
             <tr>
                 <td class='mood-section' data-date='{{ date }}'>
-                    <button>Choisir une humeur {{ url }}</button>
+                    <button>Choisir une humeur</button>
                     <div class='selected-images-container'>
                         <img class='selected-emotion-image' src='{{ url or '' }}' />
                     </div>
