@@ -15,9 +15,9 @@
 
 <div class="calendar">
     <div class="header">
-        <button onclick="previous()">Semaine précédente</button>
-        <h2 id="week">Semaine #</h2>
-        <button onclick="next()">Semaine suivante</button>
+        <a href="{{ previous_week }}">Semaine précédente</a>
+        <h2 id="week">Semaine #{{ week_number }}</h2>
+        <a href="{{ next_week }}">Semaine suivante</a>
     </div>
 
     <table id="calendar-table">
@@ -33,6 +33,16 @@
         </tr>
         </thead>
         <tbody id="calendar-body">
+            {% for date, url in emotions %}
+            <tr>
+                <td class='mood-section' data-date='{{ date }}'>
+                    <button>Choisir une humeur</button>
+                    <div class='selected-images-container'>
+                        <img class='selected-emotion-image' src='{{ url or '' }}' />
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

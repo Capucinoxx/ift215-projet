@@ -4,7 +4,7 @@ from app.database import db
 from app.models import Emotion
 from app.utils import check_required_json_data
 from werkzeug.utils import secure_filename
-
+from datetime import datetime, timedelta
 
 
 emotion_calendar = Blueprint('emotion_calendar', __name__)
@@ -16,6 +16,14 @@ def emotions():
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
 
+    if not start_date or not end_date:
+        now = datetime.now()
+        start_date = now - timedelta(days=now.weekday())
+        end_date = start_date + timedelta(days=6)
+    else:
+        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+
     emotions = []
     if start_date and end_date:
         emotions = (
@@ -24,24 +32,42 @@ def emotions():
             .all()
         )
 
+    emotions = [
+        ((start_date + timedelta(days=i)).strftime('%Y-%m-%d'),
+            next((emotion.emotion for emotion in emotions if emotion.date == (start_date + timedelta(days=i))), ''))
+        for i in range(7)
+    ]
 
-    return render_template('journalisation.html', emotions=emotions)
 
+    next_week = f"/emotions?start_date={end_date + timedelta(days=1):%Y-%m-%d}&end_date={end_date + timedelta(days=7):%Y-%m-%d}"
+    prev_week = f"/emotions?start_date={start_date - timedelta(days=7):%Y-%m-%d}&end_date={start_date - timedelta(days=1):%Y-%m-%d}"
+
+    return render_template('journalisation.html', emotions=emotions, 
+                           start_date=start_date, end_date=end_date, 
+                           week_number=start_date.isocalendar()[1],
+                           next_week=next_week, previous_week=prev_week)
 
 @emotion_calendar.route('/emotion', methods=['POST'])
 @login_required
 @check_required_json_data(['date', 'emotion'])
 def add_emotion():
     data = request.json
-    date = data['date']
+    date = datetime.strptime(data['date'], '%Y-%m-%d')
     emotion = data['emotion']
 
-    try:
-        emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
-        db.session.add(emotion)
+    existing_emotion = Emotion.query.filter_by(user_id=current_user.id, date=date).first()
+    if existing_emotion:
+        existing_emotion.emotion = emotion
         db.session.commit()
-    except:
-        return jsonify({'error': 'Bad insertion'}), 400
+        return jsonify({'success': 'Emotion updated', 'data': existing_emotion.to_dict()}), 200
+    else:
+        try:
+            emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
+            db.session.add(emotion)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            return jsonify({'error': 'Bad insertion'}), 400
 
     return jsonify({'success': 'Emotion added', 'data': emotion.to_dict()}), 201
 
