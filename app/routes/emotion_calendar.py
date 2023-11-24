@@ -33,9 +33,8 @@ def emotions():
         )
 
     emotions = [
-        (
-            (start_date + timedelta(days=i)).strftime('%Y-%m-%d'),
-            next((emotion.emotion for emotion in emotions if emotion.date == (start_date + timedelta(days=i))), 'none')        )
+        ((start_date + timedelta(days=i)).strftime('%Y-%m-%d'),
+            next((emotion.emotion for emotion in emotions if emotion.date == (start_date + timedelta(days=i))), ''))
         for i in range(7)
     ]
 
