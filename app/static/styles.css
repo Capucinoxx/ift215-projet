@@ -171,6 +171,43 @@ td:hover {
   object-fit: cover;
 }
 
+.ressources {
+  width: 100%;
+  margin: 20px auto;
+  background-color: #d3c1a2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow-y: auto;
+  min-height: 800px;
+  text-align: center;
+}
+
+.pdv-item {
+  background-color: #d3c1a2;
+  border: 3px solid #b8a489;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pdv-item h1 {
+  font-size: 1em;
+  color: #333;
+}
+
+.pdv-item p {
+  margin: 0 0 10px;
+  color: #555;
+}
+
+.pdv-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
 #calendar-body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
