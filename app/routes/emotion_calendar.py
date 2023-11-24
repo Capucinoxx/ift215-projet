@@ -21,8 +21,8 @@ def emotions():
         start_date = now - timedelta(days=now.weekday())
         end_date = start_date + timedelta(days=6)
     else:
-        start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 
     emotions = []
     if start_date and end_date:
@@ -32,14 +32,12 @@ def emotions():
             .all()
         )
 
-    emotion_dict = {}
-
-    for emotion in emotions:
-        emotion_date = emotion['date']
-        emotion_content = emotion['content']
-        emotion_dict[emotion_date] = emotion_content
-
-    emotions = [{'date': (start_date + timedelta(days=i)).strftime('%Y-%m-%d'), 'emotion': emotion_dict.get((start_date + timedelta(days=i)).strftime('%Y-%m-%d'), '')} for i in range(7)]
+    emotions = [
+        (
+            (start_date + timedelta(days=i)).strftime('%Y-%m-%d'),
+            next((emotion.emotion for emotion in emotions if emotion.date == (start_date + timedelta(days=i))), 'none')        )
+        for i in range(7)
+    ]
 
 
     next_week = f"/emotions?start_date={end_date + timedelta(days=1):%Y-%m-%d}&end_date={end_date + timedelta(days=7):%Y-%m-%d}"
@@ -55,8 +53,10 @@ def emotions():
 @check_required_json_data(['date', 'emotion'])
 def add_emotion():
     data = request.json
-    date = data['date']
+    date = datetime.strptime(data['date'], '%Y-%m-%d')
     emotion = data['emotion']
+
+
 
     try:
         emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)

@@ -33,14 +33,13 @@
         </tr>
         </thead>
         <tbody id="calendar-body">
-            {% for emotion in emotions %}
+            {% for date, url in emotions %}
             <tr>
-                <td class='mood-section' data-date='{{ emotion.date }}'>
-                    <button>Choisir une humeur</button>
+                <td class='mood-section' data-date='{{ date }}'>
+                    <button>Choisir une humeur {{ url }}</button>
                     <div class='selected-images-container'>
-                        <img class='selected-emotion-image' src='{{ emotion.emotion or "" }}' />
+                        <img class='selected-emotion-image' src='{{ url or '' }}' />
                     </div>
-                    <input type='text' name='emotion' value='{{ emotion.content or "" }}' placeholder="Écrire la cause" />           
                 </td>
             </tr>
             {% endfor %}
