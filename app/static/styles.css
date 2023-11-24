@@ -150,6 +150,7 @@ td:hover {
 
 .mood-section {
     display: flex;
+    gap: 1.5em;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
