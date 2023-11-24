@@ -56,14 +56,19 @@ def add_emotion():
     date = datetime.strptime(data['date'], '%Y-%m-%d')
     emotion = data['emotion']
 
-
-
-    try:
-        emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
-        db.session.add(emotion)
+    existing_emotion = Emotion.query.filter_by(user_id=current_user.id, date=date).first()
+    if existing_emotion:
+        existing_emotion.emotion = emotion
         db.session.commit()
-    except:
-        return jsonify({'error': 'Bad insertion'}), 400
+        return jsonify({'success': 'Emotion updated', 'data': existing_emotion.to_dict()}), 200
+    else:
+        try:
+            emotion = Emotion(user_id=current_user.id, date=date, emotion=emotion)
+            db.session.add(emotion)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            return jsonify({'error': 'Bad insertion'}), 400
 
     return jsonify({'success': 'Emotion added', 'data': emotion.to_dict()}), 201
 
