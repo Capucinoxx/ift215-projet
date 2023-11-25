@@ -4,15 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="calendar.js" defer></script>
     <title>Sante Mentale</title>
 </head>
-<body>
-<div class="menu-bar">
-    <div class="menu-item"><a href="/">Accueil</a></div>
-    <div class="menu-item"><a href="#">Méditation</a></div>
-    <div class="menu-item"><a href="/emotions">Journalisation</a></div>
-</div>
+<body class="meditation">
+	<audio autoplay="autoplay" controls preload="auto" style="display: none;"><source src="../static/meditation/meditation.mp3"/></audio>
+    <div class="menu-bar">
+        <div class="menu-item"><a href="/">Accueil</a></div>
 
+		<div class="deroulant">
+			<a href="#"><button class="btn-deroulant">Méditation</button></a>            
+			<div class="sous-menu">
+			<a href="/game">Jeu interactif</a>
+
+			<a href="seance.html">Séance méditation</a>
+			<a href="astuces.html">Trucs et astuces</a>
+			</div>
+		</div>
+        <div class="menu-item"><a href="/emotions">Journalisation</a></div>
+
+    </div>
+    <div class="banner-image">
+        <img src="../static/meditation/sunset.jpg" alt="coucher de soleil">
+    </div>
+	<div class="card-container">
+		<div class="card">
+			<div class="content">
+				<div class="image-container">
+					<img src="../static/meditation/jeu.png">
+				</div>
+				<div class="description-container">
+					<h3>Jeu interactif de respiration<br><br><span>Atteindre un état de calme tout en vous amusant.</span></h3>
+				</div>
+			</div>
+			<ul class="animated-items">
+				<li>
+					<button class="meditation">Commencer</button>
+				</li>
+				<!-- Au cas qu'on veut un autre bouton, j'ai mis ça en liste -->
+				<!-- <li>
+					<button>Informations</button>
+				</li> -->
+			</ul>
+		</div>
+		<div class="card">
+			<div class="content">
+				<div class="image-container">
+					<img src="../static/meditation/meditation.png">
+				</div>
+				<div class="description-container">
+					<h3>Séance de méditation<br><br><span>Une expérience apaisante pour calmer votre esprit.</span></h3>
+				</div>
+			</div>
+			<ul class="animated-items">
+				<li>
+					<button class="meditation">Commencer</button>
+				</li>
+				<!-- <li>
+					<button>Informations</button>
+				</li> -->
+			</ul>
+		</div>
+		<div class="card">
+			<div class="content">
+				<div class="image-container">
+					<img src="../static/meditation/ressources.png">
+				</div>
+				<div class="description-container">
+					<h3>Trucs et astuces méditation<br><br><span>Explorez des conseils pratiques pour améliorer votre expérience.</span></h3>
+				</div>
+			</div>
+			<ul class="animated-items">
+				<li>
+					<button class="meditation">Commencer</button>
+				</li>
+				<!-- <li>
+					<button>Informations</button>
+				</li> -->
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
