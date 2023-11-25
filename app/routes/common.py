@@ -11,3 +11,11 @@ def index():
 @common.route('/meditation')
 def meditation():
     return render_template('meditation.html')
+
+@common.route('/astuces')
+def astuces():
+    return render_template('astuces.html')
+
+@common.route('/seance')
+def seance():
+    return render_template('seance.html')

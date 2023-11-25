@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Document</title>
 
     <style>
@@ -26,6 +27,7 @@
             font-size: 3.6em;
             font-family: sans-serif;
             margin-top: 0.5em;
+            color: #fff;
         }
 
         .circle {
@@ -38,6 +40,18 @@
     </style>
 </head>
 <body id='game-container'>
+    <div class="menu-bar">
+        <div class="menu-item"><a href="/">Accueil</a></div>
+		<div class="deroulant">
+			<a href="/meditation"><button class="btn-deroulant">Méditation</button></a>            
+			<div class="sous-menu">
+			<a href="/game">Jeu interactif</a>
+			<a href="/seance">Séance méditation</a>
+			<a href="#">Trucs et astuces</a>
+			</div>
+		</div>
+        <div class="menu-item"><a href="/emotions">Journalisation</a></div>
+    </div>
     <h1 id='counter'>0</h1>
     <script src="{{ url_for('static', filename='game.js') }}"></script>
 </body>
