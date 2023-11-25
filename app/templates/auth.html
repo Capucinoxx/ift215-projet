@@ -3,25 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Login/Register</title>
 </head>
 <body>
-    <section id='container-auth_form'>
-        <h1 class='form-title'>Connexion</h1>
-        <form action='/login'>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
-            <input type="submit" value="envoyer">
-        </form>
+    <div class="menu-bar">
+        <div class="menu-item"><a href="/">Accueil</a></div>
 
-        <div class='form-switch-container'>
-            <span>Vous n'avez pas encore de compte ?</span>
-            <span class='form-switch'>Inscription</span>
+        <div class="deroulant">
+            <a href="#"><button class="btn-deroulant">Méditation</button></a>            
+            <div class="sous-menu">
+            <a href="/game">Jeu interactif</a>
+
+            <a href="seance.html">Séance méditation</a>
+            <a href="astuces.html">Trucs et astuces</a>
+            </div>
         </div>
-    </section>
+        <div class="menu-item"><a href="/emotions">Journalisation</a></div>
 
+    </div>
+    <div class="banner-image">
+        <img src="{{ url_for('static', filename='auth/blue-sky.jpg') }}" alt="montagnes avec ciel bleu">
+    </div>
+    <div class="form-container">
+        <section id='container-auth_form'>
+            <h1 class='form-title'>Connexion</h1>
+            <form action='/login'>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+                <input type="submit" value="envoyer" class="bouton-soumission">
+            </form>
+
+            <div class='form-switch-container'>
+                <span>Vous n'avez pas encore de compte ?</span>
+                <span class='form-switch'>Inscription</span>
+            </div>
+        </section>
+    </div>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
