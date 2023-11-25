@@ -3,7 +3,20 @@
   --card: #895d4a;
   --background: #b8a489;
   --white: #fff;
+  --darker-white: #fdfaf2;
   --light-blue: #94b8b8;
+  --lighter-blue: rgb(160, 193, 196);
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-2: rgba(0, 0, 0, 0.3);
+  --shadow-3: rgba(0, 0, 0, 0.5);
+  --light-background: #d3c1a2;
+  --lighter-background: #e5d9c2;
+  --input-field: rgb(248, 234, 217);
+  --light-beige: #f0ead7;
+  --blue: #007bff;
+  --dark-grey: #333;
+  --light-grey: #555;
+  --dark-dusty-pink: rgb(176, 123, 131);
   }
 
 body {
@@ -51,8 +64,8 @@ body {
 .calendar {
   width: 100%;
   margin: 20px auto;
-  background-color: #fdfaf2;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--darker-white);
+  box-shadow: 0 0 10px var(--shadow);
   border-radius: 8px;
   overflow: hidden;
   min-height: 800px;
@@ -62,13 +75,13 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: #d3c1a2;
+  background-color: var(--light-background);
   color: var(--white);
   min-height: 100px;
 }
 
 button {
-  background-color: #d3c1a2;
+  background-color: var(--light-background);
   color: var(--white);
   border: none;
   padding: 5px 10px;
@@ -89,11 +102,11 @@ th,
 td {
   text-align: center;
   padding: 10px;
-  border: 1px solid #e5d9c2;
+  border: 1px solid var(--lighter-background);
 }
 
 th {
-  background-color: #d3c1a2;
+  background-color: var(--light-background);
   color: var(--white);
 }
 
@@ -108,13 +121,13 @@ td {
 }
 
 td:hover {
-  background-color: #f0ead7;
+  background-color: var(--light-beige);
 }
 
 .comment-section {
   height: calc(100% - 40px);
   overflow: auto;
-  border-top: 1px solid #e5d9c2;
+  border-top: 1px solid var(--lighter-background);
   padding: 5px;
 }
 
@@ -128,7 +141,7 @@ td:hover {
   width: calc(100% - 12px);
   margin-top: 5px;
   padding: 5px;
-  border: 1px solid #e5d9c2;
+  border: 1px solid var(--lighter-background);
   border-radius: 4px;
 }
 
@@ -138,14 +151,14 @@ td:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--shadow-3);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .modal button {
-  background-color: #d3c1a2;
+  background-color: var(--light-background);
   color: var(--white);
   border: none;
   padding: 10px;
@@ -154,7 +167,7 @@ td:hover {
 }
 
 .modal button:hover {
-  background-color: #b8a489;
+  background-color: var(--background);
 }
 
 .emotion-image {
@@ -189,8 +202,8 @@ td:hover {
 .ressources {
   width: 100%;
   margin: 20px auto;
-  background-color: #d3c1a2;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--light-background);
+  box-shadow: 0 0 10px var(--shadow);
   border-radius: 8px;
   overflow-y: auto;
   min-height: 800px;
@@ -198,8 +211,8 @@ td:hover {
 }
 
 .pdv-item {
-  background-color: #d3c1a2;
-  border: 3px solid #b8a489;
+  background-color: var(--light-background);
+  border: 3px solid var(--background);
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
@@ -210,16 +223,16 @@ td:hover {
 
 .pdv-item h1 {
   font-size: 1em;
-  color: #333;
+  color: var(--dark-grey);
 }
 
 .pdv-item p {
   margin: 0 0 10px;
-  color: #555;
+  color: var(--light-grey);
 }
 
 .pdv-item a {
-  color: #007bff;
+  color: var(--blue);
   text-decoration: none;
 }
 
@@ -242,10 +255,10 @@ td:hover {
 .card-container {
   top: 200px;
   position: relative;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -253,7 +266,7 @@ position: relative;
 width: 300px;
 height: 400px;
 margin: 20px;
-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+box-shadow: 0 15px 30px var(--shadow-3);
 border-radius: 15px;
 display: flex;
 justify-content: center;
@@ -382,10 +395,10 @@ opacity: 1;
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  background: rgb(176, 123, 131);
+  background: var(--dark-dusty-pink);
   padding: 20px;
   border-radius: 1rem;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px var(--shadow);
   counter-increment: list-item;
   margin: 20px;
   color: var(--white);
@@ -415,7 +428,7 @@ opacity: 1;
 
 .astuces-wrapper h3 {
   font-size: 25px;
-  color: #fff;
+  color: var(--white);
 }
 
 .astuces-wrapper p {
@@ -425,7 +438,7 @@ opacity: 1;
 
 .astuces-wrapper li:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px var(--shadow-2);
 }
 
 @keyframes fadeIn {
@@ -437,4 +450,81 @@ opacity: 1;
       opacity: 1;
       transform: translateY(0);
   }
+}
+
+
+/* Page Auth */
+
+.form-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 200px;
+  margin: 20px;
+}
+
+#container-auth_form {
+  text-align: center;
+  background-color: var(--card);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px var(--shadow-3);
+  padding: 30px;
+  width: 400px;
+  color: var(--white);
+}
+
+.form-title {
+  margin: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--white);
+  text-align: left;
+  margin-left: 20px;
+}
+
+input {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+#username, #password {
+  background-color: var(--input-field);
+  border: 1px solid var(--input-field);
+  border-radius: 5px;
+}
+
+.bouton-soumission {
+  background-color: var(--light-blue);
+  color: var(--white);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.bouton-soumission:hover {
+  background-color: var(--lighter-blue);
+}
+
+.form-switch-container {
+  margin-top: 20px;
+}
+
+.form-switch {
+  color: var(--light-blue);
+  cursor: pointer;
+}
+
+.form-switch:hover {
+  text-decoration: underline;
 }
