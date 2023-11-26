@@ -528,3 +528,74 @@ input {
 .form-switch:hover {
   text-decoration: underline;
 }
+
+/* Page Séance */
+.anim-circle-1::before,
+.anim-circle-2::before,
+.anim-circle-3::before {
+  content: var(--circle-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--white);
+  text-align: center;
+  transition: opacity 0.5s;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  0% {
+    --circle-text: 'inspire'
+  }
+  100% {
+    --circle-text: 'expire'
+  }
+}
+
+.anim-circle-1,
+.anim-circle-2,
+.anim-circle-3 {
+  position: absolute;
+  border-radius: 50%;
+  animation: breathe 8s infinite ease-in-out;
+}
+
+.anim-circle-1 {
+  color: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  width: 200px;
+  height: 200px;
+  background: rgba(188, 237, 243, 0.889);
+}
+
+.anim-circle-2 {
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  background: rgba(188, 237, 243, 0.889);
+}
+
+.anim-circle-3 {
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: var(--white);
+  opacity: 0.3;
+}
+
+.seance-container {
+  top: 400px;
+  position: relative;
+}
+

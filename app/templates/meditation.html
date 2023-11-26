@@ -10,18 +10,16 @@
 	<audio autoplay="autoplay" controls preload="auto" style="display: none;"><source src="{{ url_for('static', filename='meditation/meditation.mp3') }}"/></audio>
     <div class="menu-bar">
         <div class="menu-item"><a href="/">Accueil</a></div>
-
 		<div class="deroulant">
 			<a href="#"><button class="btn-deroulant">Méditation</button></a>            
 			<div class="sous-menu">
 			<a href="/game">Jeu interactif</a>
 
-			<a href="seance.html">Séance méditation</a>
-			<a href="astuces.html">Trucs et astuces</a>
+			<a href="/seance">Séance méditation</a>
+			<a href="/astuces">Trucs et astuces</a>
 			</div>
 		</div>
         <div class="menu-item"><a href="/emotions">Journalisation</a></div>
-
     </div>
     <div class="banner-image">
         <img src="{{ url_for('static', filename='meditation/sunset.jpg') }}" alt="coucher de soleil">
@@ -38,7 +36,7 @@
 			</div>
 			<ul class="animated-items">
 				<li>
-					<button class="meditation">Commencer</button>
+					<a href="/game"><button class="meditation">Commencer</button></a>
 				</li>
 				<!-- Au cas qu'on veut un autre bouton, j'ai mis ça en liste -->
 				<!-- <li>
@@ -57,7 +55,7 @@
 			</div>
 			<ul class="animated-items">
 				<li>
-					<button class="meditation">Commencer</button>
+					<a href="/seance"><button class="meditation">Commencer</button></a>
 				</li>
 				<!-- <li>
 					<button>Informations</button>
@@ -75,7 +73,7 @@
 			</div>
 			<ul class="animated-items">
 				<li>
-					<button class="meditation">Commencer</button>
+					<a href="/astuces"><button class="meditation">Commencer</button></a>
 				</li>
 				<!-- <li>
 					<button>Informations</button>
