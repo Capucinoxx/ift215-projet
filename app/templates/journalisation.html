@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
     <title>Sante Mentale</title>
-</head>
-<body>
-<div class="menu-bar">
-    <div class="menu-item"><a href="/">Accueil</a></div>
-    <div class="deroulant">
-        <a href="/meditation"><button class="btn-deroulant">Méditation</button></a>            
+  </head>
+  <body>
+    <audio autoplay="autoplay" controls preload="auto" style="display: none">
+      <source
+        src="{{ url_for('static', filename='meditation/meditation.mp3') }}"
+      />
+    </audio>
+    <div class="menu-bar">
+      <div class="menu-item"><a href="/">Accueil</a></div>
+      <div class="deroulant">
+        <a href="/meditation"
+          ><button class="btn-deroulant">Méditation</button></a
+        >
         <div class="sous-menu">
-        <a href="/game">Jeu interactif</a>
+          <a href="/game">Jeu interactif</a>
 
-        <a href="/seance">Séance méditation</a>
-        <a href="/astuces">Trucs et astuces</a>
+          <a href="/seance">Séance méditation</a>
+          <a href="/astuces">Trucs et astuces</a>
         </div>
+      </div>
+      <div class="menu-item"><a href="#">Journalisation</a></div>
     </div>
-    <div class="menu-item"><a href="#">Journalisation</a></div>
-</div>
 
-<div class="calendar">
-    <div class="header">
+    <div class="calendar">
+      <div class="header">
         <a href="{{ previous_week }}">Semaine précédente</a>
         <h2 id="week">Semaine #{{ week_number }}</h2>
         <a href="{{ next_week }}">Semaine suivante</a>
-    </div>
+      </div>
 
-    <table id="calendar-table">
+      <table id="calendar-table">
         <thead>
-        <tr>
+          <tr>
             <th>Dim</th>
             <th>Lun</th>
             <th>Mar</th>
@@ -38,24 +48,24 @@
             <th>Jeu</th>
             <th>Ven</th>
             <th>Sam</th>
-        </tr>
+          </tr>
         </thead>
         <tbody id="calendar-body">
-            {% for date, url in emotions %}
-            <tr>
-                <td class='mood-section' data-date='{{ date }}'>
-                    <button>Choisir une humeur</button>
-                    <div class='selected-images-container'>
-                        <img class='selected-emotion-image' src='{{ url or '' }}' />
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
+          {% for date, url in emotions %}
+          <tr>
+            <td class="mood-section" data-date="{{ date }}">
+              <button>Choisir une humeur</button>
+              <div class="selected-images-container">
+                <img class='selected-emotion-image' src='{{ url or '' }}' />
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-</div>
+      </table>
+    </div>
 
-<script src="{{ url_for('static', filename='app.js') }}"></script>
-<script src="{{ url_for('static', filename='calendar.js') }}"></script>
-</body>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="{{ url_for('static', filename='calendar.js') }}"></script>
+  </body>
 </html>

@@ -10,20 +10,30 @@
     <title>Sante Mentale</title>
   </head>
   <body>
+    <audio autoplay="autoplay" controls preload="auto" style="display: none">
+      <source
+        src="{{ url_for('static', filename='meditation/meditation.mp3') }}"
+      />
+    </audio>
     <div class="menu-bar">
       <div class="menu-item"><a href="#">Accueil</a></div>
       <div class="deroulant">
-        <a href="/meditation"><button class="btn-deroulant">Méditation</button></a>            
+        <a href="/meditation"
+          ><button class="btn-deroulant">Méditation</button></a
+        >
         <div class="sous-menu">
-        <a href="/game">Jeu interactif</a>
-  
-        <a href="/seance">Séance méditation</a>
-        <a href="/astuces">Trucs et astuces</a>
+          <a href="/game">Jeu interactif</a>
+
+          <a href="/seance">Séance méditation</a>
+          <a href="/astuces">Trucs et astuces</a>
         </div>
       </div>
       <div class="menu-item"><a href="/emotions">Journalisation</a></div>
     </div>
-    <div class="ressources">
+    <div class="banner-image">
+      <img src="../static/meditation/sunset-tree.jpg" alt="arbre" />
+    </div>
+    <div class="ressources-wrapper">
       <h1>Quelques ressources disponibles</h1>
       <div id="pdv-flex"></div>
     </div>

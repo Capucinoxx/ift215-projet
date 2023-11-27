@@ -58,10 +58,10 @@ function genererRessources(data) {
   for (let indice in data.ressources_generales) {
     let ressource = data.ressources_generales[indice];
     innerHTML +=
-      '<article class="pdv-item">' +
-      "<h1>" +
+      "<li>" +
+      "<h3>" +
       ressource.nom +
-      "</h1>" +
+      "</h3>" +
       "<p>" +
       ressource.description +
       "</p>" +
@@ -75,7 +75,7 @@ function genererRessources(data) {
         </a>`
         : "") +
       "</p>" +
-      "</article>";
+      "</li>";
   }
 
   section.innerHTML = innerHTML;
