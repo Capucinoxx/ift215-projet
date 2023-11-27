@@ -30,14 +30,12 @@
       </div>
       <div class="menu-item"><a href="#">Journalisation</a></div>
     </div>
-
-    <div class="calendar">
-      <div class="header">
-        <a href="{{ previous_week }}">Semaine précédente</a>
+<div class="calendar">
+    <div class="header">
+        <a class="navigation-journalisation" href="{{ previous_week }}">Semaine précédente</a>
         <h2 id="week">Semaine #{{ week_number }}</h2>
-        <a href="{{ next_week }}">Semaine suivante</a>
-      </div>
-
+        <a class="navigation-journalisation" href="{{ next_week }}">Semaine suivante</a>
+    </div>
       <table id="calendar-table">
         <thead>
           <tr>
@@ -51,16 +49,16 @@
           </tr>
         </thead>
         <tbody id="calendar-body">
-          {% for date, url in emotions %}
-          <tr>
-            <td class="mood-section" data-date="{{ date }}">
-              <button>Choisir une humeur</button>
-              <div class="selected-images-container">
-                <img class='selected-emotion-image' src='{{ url or '' }}' />
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
+            {% for date, url in emotions %}
+            <tr>
+                <td class='mood-section' data-date='{{ date }}'>
+                    <button>Choisir une humeur</button>
+                    <div class='selected-images-container'>
+                        <img class='selected-emotion-image' src='{{ url or url_for('static', filename='emotions/blank.png') }}' />
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
         </tbody>
       </table>
     </div>

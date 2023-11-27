@@ -170,6 +170,11 @@ td:hover {
   background-color: var(--background);
 }
 
+.navigation-journalisation {
+  color: var(--white);
+  cursor: pointer;
+}
+
 .emotion-image {
   max-width: 100%;
   max-height: 100px;
