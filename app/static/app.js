@@ -38,8 +38,8 @@ let me = null;
         return;
 
     const messages = {
-        'login': 'Vous avez déjà un compte ?',
-        'register': 'Vous n\'avez pas encore de compte ?',
+        'register': 'Vous avez déjà un compte ?',
+        'login': 'Vous n\'avez pas encore de compte ?',
     };
 
     const el_title = el_auth_form.querySelector('.form-title');
@@ -65,7 +65,7 @@ let me = null;
     const el_switch = el_auth_form.querySelector('.form-switch');
 
     el_switch.addEventListener('click', () => {
-        action = action === '/login' ? '/register' : '/login';
+        action = action.includes('/login') ? '/register' : '/login';
         el_title.textContent = action === '/login' ? 'Connexion' : 'Inscription';
         el_switch_container.childNodes[1].textContent = messages[action.slice(1)];
         el_switch.textContent = action === '/login' ? 'Inscription' : 'Connexion';

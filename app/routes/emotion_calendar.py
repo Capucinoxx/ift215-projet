@@ -7,8 +7,8 @@ from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 
 
-emotion_calendar = Blueprint('emotion_calendar', __name__)
 
+emotion_calendar = Blueprint('emotion_calendar', __name__)
 
 @emotion_calendar.route('/emotions', methods=['GET'])
 @login_required
@@ -16,21 +16,23 @@ def emotions():
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
 
-    if not start_date or not end_date:
+    if not start_date or not end_date or start_date == 'undefined' or end_date == 'undefined':
         now = datetime.now()
-        start_date = now - timedelta(days=now.weekday())
-        end_date = start_date + timedelta(days=6)
+        start = now - timedelta(days=now.weekday())
+        start_date = datetime.strptime(f'{start.year}-{start.month}-{start.day}', '%Y-%m-%d').date()
+
+        end = start + timedelta(days=6)
+        end_date = datetime.strptime(f'{end.year}-{end.month}-{end.day}', '%Y-%m-%d').date()
     else:
         start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
         end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 
     emotions = []
-    if start_date and end_date:
-        emotions = (
-            Emotion.query.filter_by(user_id=current_user.id)
-            .filter(Emotion.date.between(start_date, end_date))
-            .all()
-        )
+    emotions = (
+        Emotion.query.filter_by(user_id=current_user.id)
+        .filter(Emotion.date.between(start_date, end_date))
+        .all()
+    )
 
     emotions = [
         ((start_date + timedelta(days=i)).strftime('%Y-%m-%d'),
